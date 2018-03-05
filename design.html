@@ -9,7 +9,9 @@
 	<h2> Overview </h2>
 <p>
 		Our design begins with the understanding of the game and the work of previous cs499 group of the SafeHouse game. And what we are responsible for is to develop a AI for the game.
+		<br>
 		While reviewing the Spring 2017 team's code,we have some understanding of their team's code setting-up and we are planning to make 2 levels of AI player which is easy AI and advanced Ai.
+		<br>
 		The easy AI should just do stuffs that make sense, like attacking another player within range etc. While the advanced AI are going to make much more complex decisions based on Naive Bayes classifier.
 </p>
 	<h2> Environment </h2>
@@ -17,20 +19,23 @@
 		Since we are building the AI functionality, we are using the code and platforms directly from the previous group. So our safe house game is playable on Apple products that running iOS9.0 or later, and the game is also playable through Goole Chrome, Mozilla firefox and Apple Safari. The game is developed in HTML5, CSS3, JavaScript and Three.js.
 </p>
 	<h2>Core Algorithm </h2>
-<p>
-	Two information arrays for game understanding
-Investigation Array - Array containing information to the AI about their current investigation knowledge:
 
+	<h3>Two information arrays for game understanding</h3>
+<p>
+Investigation Array - Array containing information to the AI about their current investigation knowledge:
+<br>
 Array contains data about the information gained from investigation cards.
+<br>
 Ex. 9 Player game [Null,Null,Null,Null,Null,Null,Null,Null,Null] Computer 1 Investigation Array
 Comp 1 Investigates Player 3 for CounterTerrorist-Neutral
 [Null,Null,CounterTerrorist-Neutral,Null,Null,Null,Null,Null,Null] 
 Comp 1 Investigates Player 3 for Neutral-Terrorist
 [Null,Null,Neutral,Null,Null,Null,Null,Null,Null]
-
+<br>
 Suspicion Array - Array containing information to the AI about the current actions of the game:
-
+<br>
 Contains knowledge of the current actions of the game. Weighs actions of players to determine roles.
+<br>
 Ex. 5 Player game Computer array: [0,0,0,0,0]
 Player 3 shoots Player 4 (Who you know is on your team)
 Computer array: [0,0,-1,0,0] 
@@ -39,12 +44,66 @@ Player 3 loses points (appears bad) to the ai because they are attacking their t
 <p>
 	Naive Bayes classifier
 	For the simplest AI our group is going to implement the AI movements using simple ranking/scoring system(ivestigation array and suspicion array).
+	<br>
 	And we want to implement the advanced AI with Bayes algorithm which will make decisions statistically based on more information.In safehouse game, the current condition of each character is the evidence and the decision our AI make should be the conclusion.
+	<br>
+	Example:
+	<table style="width:100%">
+  <tr>
+  	<th>Player</th>
+    <th>Health</th>
+    <th>Offensive Card</th> 
+    <th>Deffensive Card</th>
+    <th>Identity</th>
+  </tr>
+  <tr>
+    <td>Player1</td>
+    <td>10</td>
+    <td>1</td>
+    <td>1</td>
+    <td>CT(b)</td>
+  </tr>
+  <tr>
+    <td>Player2</td>
+    <td>8</td>
+    <td>1</td>
+    <td>0</td>
+    <td>T(b)</td>
+  </tr>
+  <tr>
+    <td>Player3</td>
+    <td>10</td>
+    <td>1</td>
+    <td>0</td>
+    <td>N(b)</td>
+  </tr>
+  <tr>
+    <td>Player4</td>
+    <td>3</td>
+    <td>1</td>
+    <td>0</td>
+    <td>T</td>
+  </tr>
+  <tr>
+    <td>AI</td>
+    <td>12</td>
+    <td>1</td>
+    <td>0</td>
+    <td>CT</td>
+  </tr>
+</table>
+<p>
+	Conclusion: CT in advance
+	<br>
+	Our AI will attack the lowest health enemy and make sure it uses all strategy to eliminate the lowest health enemy as soon as possible.
+	And through enough examples like this chart, we could get a precise enough equation to conclude the curretn game condition, and from the condition we could further develop our AI's strategy
+</p>
+
 </p>
 	<h2> AI flowchart </h2>
 	<img src="flowchart.jpg" alt="Mountain View" width="500" height="377">
     <h2> Simplest AI target choosing flow chart </h2>
     <img src="simpleaitc.jpg" alt="Mountain View" width="500" height="377">
-    
+
 </body>
 </html>
